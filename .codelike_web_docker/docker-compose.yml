@@ -1,4 +1,3 @@
-version: '3'
 services:
   nginx:
     image: nginx:latest
@@ -35,7 +34,7 @@ services:
       - 8888:80
 
   db:
-    image: mysql:5.7
+    image: mysql:latest
     container_name: codelike_web_mysql
     ports:
       - 13306:3306
@@ -43,6 +42,7 @@ services:
       - ./mysql/data:/var/lib/mysql
       - ./mysql/log/:/var/log/mysql
       - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./mysql/init:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: password
       TZ: Asia/Tokyo
