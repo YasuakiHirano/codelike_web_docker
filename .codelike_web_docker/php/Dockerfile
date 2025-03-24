@@ -1,4 +1,4 @@
-FROM php:fpm
+FROM php:8.4-fpm
 COPY php.ini /usr/local/etc/php/
 
 # vim install
@@ -17,8 +17,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN rm -r /var/lib/apt/lists/*
 
-RUN PHP_OPENSSL=yes docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
-    && docker-php-ext-install zip pdo_mysql mysqli mbstring imap soap
+RUN docker-php-ext-install zip pdo_mysql mysqli mbstring
 
 
 # composer install
